@@ -1,0 +1,9 @@
+docs_dir: ./pages
+site_name: Frontend Experience Docs
+
+markdown_extensions:
+  - toc:
+      permalink: "#"
+
+nav:
+- PR template: 'pr-template.md'

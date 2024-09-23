@@ -1,2 +1,2 @@
-# frontend-experience-docs
-A repository for the Platform Experience UI team best practices and guidelines
+# Frontend Experience docs
+This is a repository for the Platform Experience UI team's best practices and guidelines

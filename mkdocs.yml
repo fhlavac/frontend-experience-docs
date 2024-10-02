@@ -6,4 +6,6 @@ markdown_extensions:
       permalink: "#"
 
 nav:
-- PR template: 'pr-template.md'
+- Home: index.md
+- PR template: pr-template.md
+- Recordings: recordings.md

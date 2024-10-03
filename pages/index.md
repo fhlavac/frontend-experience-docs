@@ -4,7 +4,7 @@ This repository serves as a centralized hub for the **Platform Experience UI tea
 
 ---
 
-**The information contributed there is published in the inScope docs**
+### The information contributed there is published in the inScope docs**
 - [prod](https://inscope.corp.redhat.com/docs/default/component/frontend-experience-docs/)
 - [stage](https://inscope.corp.stage.redhat.com/docs/default/component/frontend-experience-docs/)
 

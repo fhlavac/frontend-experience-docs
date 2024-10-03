@@ -1,4 +1,4 @@
-# Platform Experience  **TESTING STRATEGY**
+# Platform Experience Testing Strategy
 
 JIRA: [RHCLOUD-31061](https://issues.redhat.com/browse/RHCLOUD-31061)
 

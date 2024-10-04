@@ -24,9 +24,11 @@ This repository serves as a centralized hub for the **Platform Experience UI tea
 
 ## How to contribute
 
-If you'd like to add new content to the documentation:
+If you'd like to add new content to the documentation (GitHub repository [link](https://github.com/RedHatInsights/frontend-experience-docs)):
 1. **Create a new Markdown file (`*.md`)** inside the `/pages` folder.
 2. **Update the `mkdocs.yml` file** to include a reference to your new file, ensuring it gets added to the documentation structure.
+3. **Open a pull request with your changes**.
+4. After the pull request is merged, your changes should be automatically published.
 
 ---
 

@@ -8,6 +8,8 @@
 - [Astro Virtual Assistant](https://drive.google.com/file/d/11BOWOZK0pQZ5mSpM4bKFvIrWHZ5dYpkS/view?usp=sharing) (2024-09-16)
 - [Akamai](https://drive.google.com/file/d/1v1C49LBJIYJqUHyGeLfSBjNDpLZcQaki/view?usp=sharing) (2024-09-30)
 
+### Active zone
+- [Redux basics](https://drive.google.com/file/d/1sGpqZUILFsJiyvio7GePrHUSrKGpGcra/view?usp=sharing) (2024-09-02)
 
 ### Other
 - [API Catalog take-over](https://drive.google.com/file/d/1-VZQIuJWDuD_7icuvDUS_0VmaC8cR-s_/view?usp=sharing) (2024-08-29)

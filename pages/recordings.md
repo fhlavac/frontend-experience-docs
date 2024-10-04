@@ -1,5 +1,7 @@
 ## Recordings
 
+Platform Demo recordings: [https://drive.google.com/drive/folders/1cgr3davPCLDEsfnlyRpXb26vfBDTh35G?usp=drive_link](https://drive.google.com/drive/folders/1cgr3davPCLDEsfnlyRpXb26vfBDTh35G?usp=drive_link)
+
 ### PlatEx knowledge exchange
 
 - [Widget layout overview](https://drive.google.com/file/d/1VkB-OXS8WR2LQg7HaUPHG7S5SBajV3IX/view?usp=sharing) (2024-08-19)
@@ -13,3 +15,4 @@
 
 ### Other
 - [API Catalog take-over](https://drive.google.com/file/d/1-VZQIuJWDuD_7icuvDUS_0VmaC8cR-s_/view?usp=sharing) (2024-08-29)
+

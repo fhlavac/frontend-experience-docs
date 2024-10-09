@@ -1,4 +1,4 @@
-import { Alert } from '@patternfly/react-core'
+<!-- import { Alert } from '@patternfly/react-core' -->
 
 # React router dom v5 to v6 migration
 
@@ -37,11 +37,9 @@ Currently, both Chrome and applications define their own `BrowserRouter` context
 
 This has one major drawback. Chrome and applications do not share the same `browser history` instance. That leads to many side effects (especially when using the browser navigation buttons) and blocks client-side navigation between apps without using ChromeAPI.
 
-<br />
-<Alert variant="danger" isInline title="Nesting Routers is no longer possible in react-router-dom@6!" />
-<br />
+**Nesting Routers is no longer possible in react-router-dom@6!**. 
 
-**Nesting Routers is no longer possible in react-router-dom@6!**. It is blocked within the library source code and will result in a runtime error! 
+It is blocked within the library source code and will result in a runtime error! 
 
 ```jsx
 // react-router-dom@6
@@ -68,9 +66,9 @@ We have to adapt to this change and make sure only one Router is in the componen
 
 In [react-router-dom version 6.3.0](https://github.com/remix-run/react-router/releases/tag/v6.3.0) a compatibility layer with react-router-dom@5 was merged directly into the library. Some legacy features started working and the package has improved backward compatibility.
 
-<Alert className="pf-u-mt-lg pf-u-mb-lg" isInline variant="warning" title="Compatibility layers cannot be treated as stable code.">
-  It is still just a compatibility layer that will be most likely dropped in future version releases. Do not rely on the compatibility layer. Use it as a stepping stone. If you start with the migration, make sure the app does not use any of the legacy features by the migration end.
-</Alert>
+**Compatibility layers cannot be treated as stable code**
+
+It is still just a compatibility layer that will be most likely dropped in future version releases. Do not rely on the compatibility layer. Use it as a stepping stone. If you start with the migration, make sure the app does not use any of the legacy features by the migration end.
 
 ## Sharing BrowserRouter and history
 
@@ -119,9 +117,7 @@ But in v6, history and by extension basename will be shared. Basename will alway
 </BrowserRouter>
 ```
 
-<br/>
-<Alert variant="info" isInline title="Most of links and routes with absolute paths will point to wrong location!" />
-<br/>
+**Most of links and routes with absolute paths will point to wrong location!**
 
 ### Routes must have a relative path prop
 

@@ -1,13 +1,14 @@
-import { Alert } from '@patternfly/react-core'
-import NetworkTransfer from '@docs/components/migrations/network-transfers/NetworkTransfer'
+<!-- import { Alert } from '@patternfly/react-core' -->
+<!-- import NetworkTransfer from '@docs/components/migrations/network-transfers/NetworkTransfer' -->
 
 # Patternfly @4 -> @5 migration
 
-<Alert isInline title="This guide was tested only on a handful of UI modules.">
+**This guide was tested only on a handful of UI modules.**
+
 If you encounter any inaccuracies, errors,did not find the information you need, please contact the `@crc-experience-services-team` on the `#forum-consoledot-ui` channel.
 
 The guide was tested on both Platform Experience's UIs and UIs outside of the Platform Experience team. There are more than 60 individual UI modules hosted by the Chrome UI. It is likely that edge cases were missed. Please do not hesitate to contact the team with any questions or suggestions. The guide and/or the tooling will be updated based on your feedback.
-</Alert>
+
 
 ## Affected packages
 
@@ -516,8 +517,8 @@ What is the reason behind the drops? Thanks to improved PF5 build, we are now ab
 3. At some point in a session, no new PF assets will be loaded when loading new UI module.
 4. We can further extends this system to the FEC packages to further reduce the network bandwidth.  
 
-### Summary
+<!-- ### Summary
 
 In this section, you can view the bandwidth and build size differences between pf4 and pf5 build versions. We will keep adding more data to observe the trend and validate the new build tooling.
 
-<NetworkTransfer />
+<NetworkTransfer /> -->

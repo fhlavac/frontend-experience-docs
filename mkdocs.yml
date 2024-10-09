@@ -14,9 +14,9 @@ nav:
 - Testing:
   - Testing strategy: testing/testing-strategy.md
 - Frontend migrations:
-  - FEC 3 => 4: frontend-migrations/frontend-components-3-to-4.md
-  - FEC to PF Component groups: frontend-migrations/frontend-components-to-PF-component-groups.md
-  - PF 4 => 5: frontend-migrations/pf-4-to-pf5.mdx
-  - React Router DOM 5 => 6: frontend-migrations/react-router-dom-v5-to-v6.mdx
+  - Frontend compoonents 3 => 4: frontend-migrations/frontend-components-3-to-4.md
+  - Frontend compoonents to PatternFly component groups: frontend-migrations/frontend-components-to-PF-component-groups.md
+  - PatternFly 4 => 5: frontend-migrations/pf-4-to-pf5.md
+  - React Router DOM 5 => 6: frontend-migrations/react-router-dom-v5-to-v6.md
 
 

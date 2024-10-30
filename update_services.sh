@@ -66,15 +66,15 @@ copy_readme() {
 
 update_mkdocs_yml() {
     local repo_name=$1
-    local new_entry="      - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
+    local new_entry="  - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
 
     if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
-        echo -e "\nnav:\n  - $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
+        echo -e "- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
     else
         if grep -q "$repo_name" "$MKDOCS_FILE"; then
             echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."
         else
-            sed -i "/- $SERVICES_SECTION:/a$new_entry" "$MKDOCS_FILE"
+            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i$new_entry }" "$MKDOCS_FILE"
         fi
     fi
 }
@@ -94,13 +94,6 @@ main() {
     done
 
     rm -rf "$TEMP_DIR"
-
-    if ! git diff --quiet; then
-        git add .
-        git commit -m "Update services docs with latest READMEs"
-    else
-        echo "No changes to commit."
-    fi
 }
 
 main

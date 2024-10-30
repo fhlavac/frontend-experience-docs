@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
+        with:
+          ref: master
 
       - name: Set up Git
         run: |
@@ -22,24 +24,23 @@ jobs:
         run: chmod +x update_services.sh
 
       - name: Run the update_services.sh script
-        run: |
-          ./update_services.sh
+        run: ./update_services.sh
 
-      - name: Check for changes and create a branch
-        id: create_branch
+      - name: Prepare branch
         run: |
-          # Create a unique branch name
-          BRANCH_NAME="update-services-docs-$(date +'%Y%m%d%H%M%S')"
-          echo "Branch name: $BRANCH_NAME"
+          # Stage all markdown files in the services directory
+          git add .
           
-          # Check if there are changes to commit
+          # Commit and push only if there are changes
           if [ -n "$(git status --porcelain)" ]; then
+            BRANCH_NAME="update-services-docs-$(date +'%Y%m%d%H%M%S')"
+            git commit -m "Update services docs with latest READMEs"
             git checkout -b "$BRANCH_NAME"
             git push origin "$BRANCH_NAME"
             echo "branch=$BRANCH_NAME" >> $GITHUB_ENV
           else
             echo "No changes to commit."
-            echo "branch=" >> $GITHUB_ENV  # Empty branch variable to avoid errors later
+            echo "branch=" >> $GITHUB_ENV
           fi
 
       - name: Create Pull Request

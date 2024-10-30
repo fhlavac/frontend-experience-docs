@@ -77,7 +77,10 @@ update_mkdocs_yml() {
             echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."
         else
             # insert before the first empty line after the section, or at the end if no empty line follows
-            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i$new_entry; t; }; \$a$new_entry" "$MKDOCS_FILE"
+            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i\\
+$new_entry
+; t }" "$MKDOCS_FILE"
+            sed -i "\$a$new_entry" "$MKDOCS_FILE"
         fi
     fi
 }

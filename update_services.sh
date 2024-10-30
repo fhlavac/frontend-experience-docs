@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# when removing/updating repos, make sure to update mkdocs.yml accordingly
+# when editing repositories, make sure to update mkdocs.yml accordingly
 declare -A repos=(
     ["Landing page UI"]="https://github.com/RedHatInsights/landing-page-frontend.git"
     ["Settings UI"]="https://github.com/RedHatInsights/settings-frontend.git"
@@ -65,26 +65,6 @@ copy_readme() {
     fi
 }
 
-update_mkdocs_yml() {
-    local repo_name=$1
-    local new_entry="  - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
-
-    if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
-        # append the section after the last non-empty line
-        echo -e "\n- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
-    else
-        if grep -q "$repo_name" "$MKDOCS_FILE"; then
-            echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."
-        else
-            # insert before the first empty line after the section, or at the end
-            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i\\
-$new_entry
-; t }" "$MKDOCS_FILE"
-            sed -i "\$a$new_entry" "$MKDOCS_FILE"
-        fi
-    fi
-}
-
 main() {
     mkdir -p "$TARGET_DIR"
     mkdir -p "$TEMP_DIR"
@@ -95,8 +75,6 @@ main() {
         clone_or_pull_repo "$repo_name" "$repo_url"
 
         copy_readme "$repo_name"
-
-        update_mkdocs_yml "$repo_name"
     done
 
     rm -rf "$TEMP_DIR"

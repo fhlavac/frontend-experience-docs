@@ -71,7 +71,7 @@ update_mkdocs_yml() {
     if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
         # append the new section directly after the last non-empty line
         sed -i -e :a -e '/^\n*$/{$d;N;};/\n$/ba' "$MKDOCS_FILE"
-        echo -e "\n  - $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
+        echo -e "\n- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
     else
         if grep -q "$repo_name" "$MKDOCS_FILE"; then
             echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."

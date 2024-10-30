@@ -35,8 +35,6 @@ jobs:
           if [ -n "$(git status --porcelain)" ]; then
             BRANCH_NAME="update-services-docs-$(date +'%Y%m%d%H%M%S')"
             git commit -m "Update services docs with latest READMEs"
-            git checkout -b "$BRANCH_NAME"
-            git push origin "$BRANCH_NAME"
             echo "branch=$BRANCH_NAME" >> $GITHUB_ENV
           else
             echo "No changes to commit."

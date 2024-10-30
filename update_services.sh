@@ -68,24 +68,24 @@ update_mkdocs_yml() {
     local repo_name=$1
     local new_entry="  - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
 
-    if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
-        # append the section after the last non-empty line
-        sed -i -e :a -e '/^\n*$/{$d;N;};/\n$/ba' "$MKDOCS_FILE"
-        echo -e "\n- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
-    else
-        if grep -q "$repo_name" "$MKDOCS_FILE"; then
-            echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."
-        else
-            # insert before the first empty line after the section, or at the end
-            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i\\
-$new_entry
-; t }" "$MKDOCS_FILE"
-            # ensure to add new_entry with the correct intentation
-            sed -i "\$a\\
-$new_entry" "$MKDOCS_FILE"
-        fi
+    # remove trailing empty lines from the file
+    sed -i '/^[[:space:]]*$/d' "$MKDOCS_FILE"
+
+    # remove the existing Services section and its sub-items if exist
+    if grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
+        sed -i "/- $SERVICES_SECTION:/,/^[[:space:]]*$/d" "$MKDOCS_FILE"
     fi
+
+    # create services section
+    echo -e "\n- $SERVICES_SECTION:" >> "$MKDOCS_FILE"
+
+    # add all existing repositories
+    for repo in "${repositories[@]}"; do
+        local entry="  - ${repo}: ${TARGET_DIR}/${repo}.md"
+        echo "$entry" >> "$MKDOCS_FILE"
+    done
 }
+
 
 main() {
     mkdir -p "$TARGET_DIR"

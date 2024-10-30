@@ -69,12 +69,15 @@ update_mkdocs_yml() {
     local new_entry="  - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
 
     if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
-        echo -e "- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
+        # append the new section directly after the last non-empty line
+        sed -i -e :a -e '/^\n*$/{$d;N;};/\n$/ba' "$MKDOCS_FILE"
+        echo -e "\n  - $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
     else
         if grep -q "$repo_name" "$MKDOCS_FILE"; then
             echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."
         else
-            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i$new_entry }" "$MKDOCS_FILE"
+            # insert before the first empty line after the section, or at the end if no empty line follows
+            sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i$new_entry; t; }; \$a$new_entry" "$MKDOCS_FILE"
         fi
     fi
 }

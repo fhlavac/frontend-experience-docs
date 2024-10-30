@@ -2,8 +2,8 @@ name: Update services docs
 
 on:
   schedule:
-    - cron: '0 1 * * *'  # Run every day at 1 AM
-  workflow_dispatch:  # Allow manual triggering
+    - cron: '0 1 * * *'  # run every day at 1 AM
+  workflow_dispatch:  # allow manual triggering
 
 jobs:
   update-readmes:

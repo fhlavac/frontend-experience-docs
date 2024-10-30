@@ -69,9 +69,6 @@ update_mkdocs_yml() {
     local repo_name=$1
     local new_entry="  - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
 
-    # remove trailing empty lines from the end of thefile
-    sed -i ':a; /^\n*$/ { N; ba }; $!d; s/\n*$/\n/' "$MKDOCS_FILE"
-
     if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
         # append the section after the last non-empty line
         echo -e "\n- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"

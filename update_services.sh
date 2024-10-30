@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# when removing/updating repos, make sure to update mkdocs.yml accordingly
 declare -A repos=(
     ["Landing page UI"]="https://github.com/RedHatInsights/landing-page-frontend.git"
     ["Settings UI"]="https://github.com/RedHatInsights/settings-frontend.git"
@@ -68,34 +69,17 @@ update_mkdocs_yml() {
     local repo_name=$1
     local new_entry="  - ${repo_name}: ${TARGET_DIR}/${repo_name}.md"
 
-    # remove trailing empty lines from the end of the
+    # remove trailing empty lines from the end of thefile
     sed -i ':a; /^\n*$/ { N; ba }; $!d; s/\n*$/\n/' "$MKDOCS_FILE"
 
-    # check if the Services section exists
     if ! grep -q "$SERVICES_SECTION:" "$MKDOCS_FILE"; then
         # append the section after the last non-empty line
         echo -e "\n- $SERVICES_SECTION:\n$new_entry" >> "$MKDOCS_FILE"
     else
-        # update existing entries
-        local current_entries
-        current_entries=$(sed -n "/- $SERVICES_SECTION:/,/^[[:space:]]*$/p" "$MKDOCS_FILE" | grep -v -e '^- $SERVICES_SECTION:' -e '^[[:space:]]*$')
-
-        # create an array of current repo names
-        local repo_array=()
-        IFS=$'\n' read -r -d '' -a repo_array < <(echo "$current_entries" | awk -F ': ' '{print $1}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//;s/^  - //')
-
-        # remove entries that are not in the repositories array
-        for entry in "${repo_array[@]}"; do
-            if ! [[ " ${repositories[*]} " =~ " ${entry} " ]]; then
-                sed -i "/$entry:/d" "$MKDOCS_FILE"
-            fi
-        done
-
-        # add new entry if it doesn't already exist
         if grep -q "$repo_name" "$MKDOCS_FILE"; then
             echo "Navigation entry for $repo_name already exists in $MKDOCS_FILE."
         else
-            # insert before the first empty line after SERVICES_SECTION, or at the end if no empty line follows
+            # insert before the first empty line after the section, or at the end
             sed -i "/- $SERVICES_SECTION:/,/^$/ { /^[[:space:]]*$/i\\
 $new_entry
 ; t }" "$MKDOCS_FILE"
@@ -103,7 +87,6 @@ $new_entry
         fi
     fi
 }
-
 
 main() {
     mkdir -p "$TARGET_DIR"
